@@ -1,5 +1,6 @@
 {
   "name": "miladm/data-object",
+  "version": "1.0.0",
   "description": "simply control your data with data object method",
   "type": "library",
   "license": "Apache-2.0",
