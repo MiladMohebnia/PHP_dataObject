@@ -14,9 +14,17 @@ class DataObject
             if (is_string($this->$name) && class_exists($this->$name)) {
                 $this->$name = new $this->$name($value);
             } elseif (is_object($this->$name)) {
-                foreach ((array) $this->$name as $key => $val) {
+                if ($this->$name instanceof DataObject) {
+                    $this->$name = new $this->$name($value);
+                } else {
 
-                    $this->$name->$key = new $val($value->$key);
+                    // bad implementation
+                    /**
+                     * Todo: update this part
+                     */
+                    foreach ((array) $this->$name as $key => $val) {
+                        $this->$name->$key = new $val($value->$key);
+                    }
                 }
             } else {
                 $this->$name = $value;
